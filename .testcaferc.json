@@ -1,0 +1,21 @@
+{
+    "browsers":[
+      "chrome"
+    ],
+    "src":[
+      "./tests"
+    ],
+    "reporter":[
+      {
+        "name":"spec"
+      }
+    ],
+    "skipJsErrors": true,
+    "screenshots": {
+        "path": "./screenshots"
+    },
+    "selectorTimeout":20000,
+    "assertionTimeout":20000,
+    "pageLoadTimeout":10000,
+    "speed":1
+}
