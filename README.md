@@ -12,6 +12,6 @@ Test automation framework for testing an e-commerce site
 * .testcaferc.json is the config file for TestCafe. Tests will run in Chrome headless by default. If you want to run the tests in other browsers check [Configuration File](https://devexpress.github.io/testcafe/documentation/reference/configuration-file.html#browsers)
  
 # How to run the tests?
-> nvm use 11.5.0
-> npm install
-> npm run test
+* nvm use 11.5.0
+* npm install
+* npm run test
