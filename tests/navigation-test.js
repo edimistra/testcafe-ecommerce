@@ -4,16 +4,16 @@ import testdata from "../testdata/test-data";
 const basePage = new BasePage()
 
 fixture `Category Navigation`
-    .page `http://automationpractice.com/index.php`;
+    .page `${testdata.serverURL}`;
 
     test(`Shopper navigates to Women section`, async t => {     
-        await basePage.navigateTo(testdata.category.women);
+        await basePage.goToCategory(testdata.category.women);
     });
 
     test(`Shopper navigates to Dresses section`, async t => {     
-        await basePage.navigateTo(testdata.category.dresses);
+        await basePage.goToCategory(testdata.category.dresses);
     });
 
     test(`Shopper navigates to T-Shirts section`, async t => {     
-        await basePage.navigateTo(testdata.category.tShirts);
+        await basePage.goToCategory(testdata.category.tShirts);
     });

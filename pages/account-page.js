@@ -2,7 +2,6 @@ import { Selector, t } from "testcafe";
 
 export default class AccountPage {
     constructor () {
-
         this.emailCreate = Selector('#email_create')
         this.email = Selector('#email')
         this.submitCreate = Selector('#SubmitCreate')
@@ -10,8 +9,6 @@ export default class AccountPage {
         this.firstName = Selector('#customer_firstname')
         this.lastName = Selector('#customer_lastname')
         this.password = Selector('#passwd')
-        this.addressFirstName = Selector('#firstname')
-        this.addressLastName = Selector('#lastname')
         this.address = Selector('#address1')
         this.city = Selector('#city')
         this.stateSelect = Selector('#id_state')
@@ -29,8 +26,6 @@ export default class AccountPage {
             .typeText(this.firstName, accountData.firstName)
             .typeText(this.lastName, accountData.lastName)
             .typeText(this.password, accountData.password)
-            .typeText(this.addressFirstName, accountData.firstName)
-            .typeText(this.addressLastName, accountData.lastName)
             .typeText(this.address, accountData.address)
             .typeText(this.city, accountData.city)
             .click(this.stateSelect)

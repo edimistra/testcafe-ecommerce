@@ -4,7 +4,7 @@ import testdata from "../testdata/test-data";
 const basePage = new BasePage()
 
 fixture `Search`
-    .page `http://automationpractice.com/index.php`;
+    .page `${testdata.serverURL}`;
 
     test(`Shopper performs a search with results`, async t => {     
         await basePage.searchKeyword(testdata.search.withResults);

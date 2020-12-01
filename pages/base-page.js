@@ -1,4 +1,4 @@
-import { Selector, t } from "testcafe";
+import { Selector, ClientFunction, t } from "testcafe";
 
 export default class BasePage {
     constructor () {
@@ -12,15 +12,15 @@ export default class BasePage {
         this.noResultsAlert = Selector('p.alert.alert-warning')
     }
 
-    async navigateTo(category) {
+    async goToCategory(category) {
         await t
             .click(Selector('a').withText(category))
             .takeScreenshot()
 
-        this.assertNavigateTo(category)
+        this.assertGoToCategory(category)
     }
 
-    async assertNavigateTo(category) {
+    async assertGoToCategory(category) {
         await t
             .expect(this.breadcrumb.withText(category).exists).ok()
             .expect(this.categoryName.withText(category).exists).ok()
@@ -49,5 +49,21 @@ export default class BasePage {
 
     async assertSearchWithNoResults(keyword) {
         await t.expect(this.noResultsAlert.withText(keyword).exists).ok()
+    }
+
+    async shareProduct(productID, socialMedia) {
+        await t.click(Selector(`button.btn.btn-default.btn-${socialMedia}`))
+        
+        const getURL = ClientFunction(() => window.location.href);
+        const url = await getURL();
+
+        if ((socialMedia == 'facebook') || (socialMedia == 'google-plus')) {
+            await t.expect(url).contains(`253D${productID}`) // Facebook and Google Plus encode the product URL
+        }
+        if (socialMedia == 'twitter') {
+            await t.expect(url).contains(`id_product=${productID}`)
+        }
+
+        await t.takeScreenshot()
     }
 }
