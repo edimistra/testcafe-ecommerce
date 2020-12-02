@@ -12,5 +12,7 @@ fixture `Cart`
         test(`Shopper adds an item to the cart`, async t => { 
             await t.navigateTo(`${testdata.serverURL}?id_product=${product.productid}&controller=product`)   
             await cartPage.addToCart(product)
+            await cartPage.goToCart()
+            await cartPage.assertAddToCart(product)
         });
     });

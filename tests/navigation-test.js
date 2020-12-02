@@ -7,13 +7,16 @@ fixture `Category Navigation`
     .page `${testdata.serverURL}`;
 
     test(`Shopper navigates to Women section`, async t => {     
-        await basePage.goToCategory(testdata.category.women);
+        await basePage.goToCategory(testdata.category.women)
+        await basePage.assertGoToCategory(testdata.category.women)
     });
 
     test(`Shopper navigates to Dresses section`, async t => {     
-        await basePage.goToCategory(testdata.category.dresses);
+        await basePage.goToCategory(testdata.category.dresses)
+        await basePage.assertGoToCategory(testdata.category.dresses)
     });
 
     test(`Shopper navigates to T-Shirts section`, async t => {     
-        await basePage.goToCategory(testdata.category.tShirts);
+        await basePage.goToCategory(testdata.category.tShirts)
+        await basePage.assertGoToCategory(testdata.category.tShirts)
     });

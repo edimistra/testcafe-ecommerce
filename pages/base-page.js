@@ -2,7 +2,7 @@ import { Selector, ClientFunction, t } from "testcafe";
 
 export default class BasePage {
     constructor () {
-        this.breadcrumb = Selector('.breadcrum.clearfix')
+        this.categoriesBlock = Selector('#categories_block_left .title_block')
         this.categoryName = Selector('span.cat-name')
         this.searchInput = Selector('#search_query_top')
         this.searchSubmit = Selector('button[name="submit_search"]')
@@ -16,33 +16,38 @@ export default class BasePage {
         await t
             .click(Selector('a').withText(category))
             .takeScreenshot()
-
-        this.assertGoToCategory(category)
     }
 
     async assertGoToCategory(category) {
+        await t.expect(this.categoryName.innerText).contains(category) 
+
+        if (category !== 'T-SHIRTS') { // Search results for T-SHIRTS do not have the categories block on left side
+            await t.expect(this.categoriesBlock.innerText).contains(category)
+        }
+    }
+
+    async assertGoToDressCategory(category) {
         await t
             .expect(this.breadcrumb.withText(category).exists).ok()
             .expect(this.categoryName.withText(category).exists).ok()
     }
 
-    async searchKeyword(keyword, withResults = true) {
+    async assertGoToTShirtsCategory(category) {
+        await t
+            .expect(this.breadcrumb.withText(category).exists).ok()
+            .expect(this.categoryName.withText(category).exists).ok()
+    }
+
+    async searchKeyword(keyword) {
         await t
             .typeText(this.searchInput, keyword)
             .click(this.searchSubmit)
             .takeScreenshot()
-
-            if (withResults) {
-                this.assertSearchWithResults(keyword)
-            }
-            else {
-                this.assertSearchWithNoResults(keyword)
-            }
     }
 
     async assertSearchWithResults(keyword) {
         await t
-            .expect(this.productListHeader.withText(keyword).exists).ok()
+            .expect(this.productListHeader.innerText).contains(keyword)
             .expect(this.headingCounter.exists).ok()
             .expect(this.productCount.exists).ok()
     }

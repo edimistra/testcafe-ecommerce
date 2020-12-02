@@ -32,7 +32,7 @@ exports.category = {
 }
 
 exports.search = {
-    withResults: 'summer',
+    withResults: 'SUMMER',
     withNoResults: 'honda'
 }
 

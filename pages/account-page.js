@@ -34,8 +34,6 @@ export default class AccountPage {
             .typeText(this.mobile, accountData.mobile)
             .click(this.register)
             .takeScreenshot()
-
-        await this.assertAccount(accountData)
     }
 
     async assertAccount(accountData) {
@@ -48,7 +46,5 @@ export default class AccountPage {
             .typeText(this.password, accountData.password)
             .click(this.submitLogin)
             .takeScreenshot()
-
-        await this.assertAccount(accountData)
     }
 }

@@ -1,18 +1,19 @@
 import { Selector, ClientFunction, t } from "testcafe";
 
-export default class CartPage {
+export default class CheckoutPage {
     constructor () {
-        this.sizeSelect = Selector('#group_1')
-        this.sizeOption = this.sizeSelect.find('option')
-        this.quantityWanted = Selector('#quantity_wanted')
-        this.addToCartButton = Selector('#add_to_cart button[name="Submit"]')
-        this.cartLink = Selector('div.shopping_cart a')
-        this.cartItemDescription = Selector('p.product-name').child()
-        this.cartItemColorSize = Selector('td.cart_description small a')
-        this.itemPrice = Selector('span.price')
-        this.itemQuantity = Selector('.cart_quantity input[type="hidden"]')
-        this.itemTotal = Selector('td.cart_total span.price')
-        this.closeCartModal = Selector('span[title="Close window"]')
+        this.proceedToCheckout = Selector('a[title="Proceed to checkout"] span')
+        this.continueToShipping = Selector('button[name="processAddress"]')
+        this.termsCheckbox = Selector('input[type="checkbox"]')
+        this.continueToPayment = Selector('button[name="processCarrier"]')
+        this.payByWire = Selector('.bankwire')
+        this.payByCheck = Selector('.cheque')
+        this.confirmOrder = Selector('button[type="submit"] span').withText('I confirm my order')
+        this.confirmWireMessage = Selector('p.cheque-indent strong.dark') //Your order on My Store is complete.
+        this.wireInfo = Selector('div.box.cheque-box h3.page-subheading')
+        this.chequeInfo = Selector('div.box.order-confirmation h3.page-subheading')
+        this.confirmChequeMessage = Selector('p.alert.alert-success') //Your order on My Store is complete.
+
     }
 
     async addToCart(product) {
@@ -33,7 +34,7 @@ export default class CartPage {
 
     async assertAddToCart(product) {
         const total = product.quantity * product.price
-
+        
         await t
             .expect(this.cartItemDescription.innerText).contains(product.name) // Asserts correct item name
             .expect(this.cartItemColorSize.innerText).contains(product.color)
