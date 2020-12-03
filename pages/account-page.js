@@ -38,7 +38,6 @@ export default class AccountPage {
     async assertAccount(accountData) {
         await t
             .expect(this.myAccount.withText(`${accountData.firstName} ${accountData.lastName}`).exists).ok()
-            .takeScreenshot()
     }
 
     async login(accountData) {

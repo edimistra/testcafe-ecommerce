@@ -3,8 +3,11 @@ import testdata from "../testdata/test-data";
 
 const basePage = new BasePage()
 
-fixture `Social Media Links`
-    .page `${testdata.serverURL}?id_product=${testdata.productId}&controller=product`;
+fixture `Social_Media`
+    .page `${testdata.serverURL}?id_product=${testdata.productId}&controller=product`
+    .afterEach(async t => {
+        await t.takeScreenshot()
+    })
 
     test(`Shopper shares product to Google+`, async t => {     
         await basePage.shareProduct(testdata.productId, 'google-plus');

@@ -3,8 +3,11 @@ import testdata from "../testdata/test-data";
 
 const accountPage = new AccountPage()
 
-fixture `Create New Account`
-    .page `${testdata.serverURL}?controller=authentication&back=my-account`;
+fixture `Account`
+    .page `${testdata.serverURL}?controller=authentication&back=my-account`
+    .afterEach(async t => {
+        await t.takeScreenshot()
+    })
 
     test(`User creates a new account successfully`, async t => {  
         const accountData = testdata.createAccountData()   

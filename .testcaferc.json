@@ -1,6 +1,6 @@
 {
     "browsers":[
-      "chrome"
+      "chrome:headless"
     ],
     "src":[
       "./tests"
@@ -8,11 +8,17 @@
     "reporter":[
       {
         "name":"spec"
+      },
+      {
+        "name":"html",
+        "output":"results/reports/report.html"
       }
     ],
     "skipJsErrors": true,
     "screenshots": {
-        "path": "./screenshots"
+        "path": "results/screenshots",
+        "pathPattern": "${DATE}-${TIME}/${FIXTURE}/test-${TEST_INDEX}/${FILE_INDEX}.png",
+        "takeOnFails":"true"
     },
     "selectorTimeout":20000,
     "assertionTimeout":20000,

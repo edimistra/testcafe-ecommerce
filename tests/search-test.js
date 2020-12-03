@@ -4,7 +4,10 @@ import testdata from "../testdata/test-data";
 const basePage = new BasePage()
 
 fixture `Search`
-    .page `${testdata.serverURL}`;
+    .page `${testdata.serverURL}`
+    .afterEach(async t => {
+        await t.takeScreenshot()
+    })
 
     test(`Shopper performs a search with results`, async t => {     
         await basePage.searchKeyword(testdata.search.withResults)

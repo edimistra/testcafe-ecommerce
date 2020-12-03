@@ -26,7 +26,7 @@ exports.createAddressData = function() {
     const state = faker.address.state(false)
     const zip = faker.address.zipCodeByState(state).substr(0,5) // Faker call returns a full zipcode (14305-1734)
     const mobile = faker.phone.phoneNumber('##########')
-    const alias = `${firstName}-${lastName}-address`
+    const alias = `${firstName}-${lastName}`
 
     return { firstName, lastName, address, city, state, zip, mobile, alias }
 };

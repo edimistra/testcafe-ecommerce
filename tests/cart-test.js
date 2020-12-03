@@ -6,7 +6,10 @@ const cartPage = new CartPage()
 
 
 fixture `Cart`
-    .page `${testdata.serverURL}`;
+    .page `${testdata.serverURL}`
+    .afterEach(async t => {
+        await t.takeScreenshot()
+    })
     
     productSet.forEach(product => {
         test(`Shopper adds an item to the cart`, async t => { 

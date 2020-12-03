@@ -21,6 +21,7 @@
   "homepage": "https://github.com/edimistra/testcafe-ecommerce#readme",
   "dependencies": {
     "faker": "^5.1.0",
-    "testcafe": "^1.9.4"
+    "testcafe": "^1.9.4",
+    "testcafe-reporter-html": "^1.4.6"
   }
 }

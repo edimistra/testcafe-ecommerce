@@ -46,7 +46,7 @@ export default class CheckoutPage {
             .click(this.stateOption.withText(address.state))
             .typeText(this.zip, address.zip)
             .typeText(this.mobile, address.mobile)
-            .typeText(this.addressAlias, address.alias)
+            .typeText(this.addressAlias, address.alias, { replace: true })
             .click(this.saveButton)
     }
 
@@ -62,7 +62,6 @@ export default class CheckoutPage {
                 .expect(this.paymentInfo.innerText).contains(`${paymentType} PAYMENT`)
                 .click(this.confirmOrderButton)
                 .expect(this.confirmWireMessage.innerText).contains('Your order on My Store is complete')
-                .takeScreenshot()
         }
         else {
             await t
@@ -70,7 +69,6 @@ export default class CheckoutPage {
                 .expect(this.paymentInfo.innerText).contains(`${paymentType} PAYMENT`)
                 .click(this.confirmOrderButton)
                 .expect(this.confirmChequeMessage.innerText).contains('Your order on My Store is complete')
-                .takeScreenshot()
         }            
     }
 }

@@ -3,8 +3,11 @@ import testdata from "../testdata/test-data";
 
 const basePage = new BasePage()
 
-fixture `Category Navigation`
-    .page `${testdata.serverURL}`;
+fixture `Navigation`
+    .page `${testdata.serverURL}`
+    .afterEach(async t => {
+        await t.takeScreenshot()
+    })
 
     test(`Shopper navigates to Women section`, async t => {     
         await basePage.goToCategory(testdata.category.women)
