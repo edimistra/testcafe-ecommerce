@@ -41,5 +41,6 @@ export default class CartPage {
             .expect(this.itemPrice.withText(`$${product.price.toString()}`).exists).ok() // Asserts correct item price
             .expect(this.itemQuantity.value).eql(product.quantity.toString()) // Asserts correct item quantity
             .expect(this.itemTotal.innerText).contains(total.toString()) // Asserts correct total (Price x Qty)
+            .takeScreenshot()
     }
 }

@@ -15,7 +15,6 @@ export default class BasePage {
     async goToCategory(category) {
         await t
             .click(Selector('a').withText(category))
-            .takeScreenshot()
     }
 
     async assertGoToCategory(category) {
@@ -24,25 +23,27 @@ export default class BasePage {
         if (category !== 'T-SHIRTS') { // Search results for T-SHIRTS do not have the categories block on left side
             await t.expect(this.categoriesBlock.innerText).contains(category)
         }
+        await t.takeScreenshot()
     }
 
     async assertGoToDressCategory(category) {
         await t
             .expect(this.breadcrumb.withText(category).exists).ok()
             .expect(this.categoryName.withText(category).exists).ok()
+            .takeScreenshot()
     }
 
     async assertGoToTShirtsCategory(category) {
         await t
             .expect(this.breadcrumb.withText(category).exists).ok()
             .expect(this.categoryName.withText(category).exists).ok()
+            .takeScreenshot()
     }
 
     async searchKeyword(keyword) {
         await t
             .typeText(this.searchInput, keyword)
             .click(this.searchSubmit)
-            .takeScreenshot()
     }
 
     async assertSearchWithResults(keyword) {
@@ -50,10 +51,13 @@ export default class BasePage {
             .expect(this.productListHeader.innerText).contains(keyword)
             .expect(this.headingCounter.exists).ok()
             .expect(this.productCount.exists).ok()
+            .takeScreenshot()
     }
 
     async assertSearchWithNoResults(keyword) {
-        await t.expect(this.noResultsAlert.withText(keyword).exists).ok()
+        await t
+            .expect(this.noResultsAlert.withText(keyword).exists).ok()
+            .takeScreenshot()
     }
 
     async shareProduct(productID, socialMedia) {

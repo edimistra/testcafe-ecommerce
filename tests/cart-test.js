@@ -1,7 +1,7 @@
 import CartPage from "../pages/cart-page";
 import testdata from "../testdata/test-data";
 
-const productSet = require('../testdata/product-data.json');
+const productSet = require('../testdata/product-data.json')
 const cartPage = new CartPage()
 
 

@@ -33,11 +33,12 @@ export default class AccountPage {
             .typeText(this.zip, accountData.zip)
             .typeText(this.mobile, accountData.mobile)
             .click(this.register)
-            .takeScreenshot()
     }
 
     async assertAccount(accountData) {
-        await t.expect(this.myAccount.withText(`${accountData.firstName} ${accountData.lastName}`).exists).ok()
+        await t
+            .expect(this.myAccount.withText(`${accountData.firstName} ${accountData.lastName}`).exists).ok()
+            .takeScreenshot()
     }
 
     async login(accountData) {
@@ -45,6 +46,5 @@ export default class AccountPage {
             .typeText(this.email, accountData.email)
             .typeText(this.password, accountData.password)
             .click(this.submitLogin)
-            .takeScreenshot()
     }
 }

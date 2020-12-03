@@ -18,6 +18,19 @@ exports.createAccountData = function() {
     return { firstName, lastName, email, password, address, city, state, zip, mobile, myAccount }
 };
 
+exports.createAddressData = function() {
+    const firstName = faker.name.firstName()
+    const lastName = faker.name.lastName()
+    const address = faker.address.streetAddress()
+    const city = faker.address.city()
+    const state = faker.address.state(false)
+    const zip = faker.address.zipCodeByState(state).substr(0,5) // Faker call returns a full zipcode (14305-1734)
+    const mobile = faker.phone.phoneNumber('##########')
+    const alias = `${firstName}-${lastName}-address`
+
+    return { firstName, lastName, address, city, state, zip, mobile, alias }
+};
+
 exports.accountData = {
     email: 'TestAccount1@gmail.com',
     password: 'Test1234',
